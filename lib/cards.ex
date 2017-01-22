@@ -62,8 +62,19 @@ defmodule Cards do
     end
   end
 
+  def duplicate(deck) do
+   List.duplicate(deck, 2)
+  end
+
+  def add_joker(deck) do
+    [Joker_Red, Joker_Black | deck]
+  end
+
   def create_hand(hand_size) do
     Cards.create_deck
+    |>Cards.add_joker
+    |>Cards.duplicate
+    |> List.flatten
     |> Cards.shuffle
     |> Cards.deal(hand_size)
   end
